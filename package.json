@@ -2,7 +2,10 @@
 	"name": "my-skeleton-app",
 	"version": "0.0.1",
 	"private": true,
+	"main": "src/electron.cjs",
 	"scripts": {
+		"start": "electron .",
+		"electron": "concurrently --kill-others \"vite dev\" \"electron src/electron.cjs\"",
 		"dev": "vite dev",
 		"build": "vite build",
 		"preview": "vite preview",
@@ -23,6 +26,8 @@
 		"@typescript-eslint/eslint-plugin": "^5.45.0",
 		"@typescript-eslint/parser": "^5.45.0",
 		"autoprefixer": "^10.4.14",
+		"concurrently": "^8.0.1",
+		"electron": "^24.1.2",
 		"eslint": "^8.28.0",
 		"eslint-config-prettier": "^8.5.0",
 		"eslint-plugin-svelte3": "^4.0.0",
@@ -37,5 +42,9 @@
 		"vite": "^4.2.0",
 		"vitest": "^0.25.3"
 	},
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"electron-serve": "^1.1.0",
+		"electron-window-state": "^5.0.3"
+	}
 }
