@@ -4,7 +4,7 @@ const ws = require("electron-window-state");
 try { require("electron-reloader")(module); } catch {}
 
 const loadURL = serve({directory: "."});
-const port = process.env.PORT || 5174;
+const port = 5174;
 const isdev = !app.isPackaged || (process.env.NODE_ENV == "development");
 let mainwindow;
 
