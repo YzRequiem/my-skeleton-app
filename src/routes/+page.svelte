@@ -1,23 +1,28 @@
 <script>
-	import Chart from "$lib/components/Chart.svelte";
+	import BarChart from "$lib/components/BarChart.svelte";
+	
 
 </script>
 <div class="container h-full mx-auto justify-center items-center flex flex-col">
-	<div class="space-y-5 my-10">
-		<h1 class="m-5">Selectionnez votre plante</h1>
+	<div class="w-full md:w-4/6 ">
+		<h2 class="m-5 py-12 text-xl text-center">Surveillez l'hydratation de vos plantes</h2>
+
+		<BarChart />
+	</div>
+	<div class="space-y-5 my-10 w-3/6">
+		<h2 class="m-5 text-xl text-center">Selectionnez votre plante</h2>
 		<select class="select" size="4" value="1">
 			<option value="1">Plante 1</option>
 			<option value="2">Plante 2</option>
 			<option value="3">Plante 3</option>
+			<option value="4">Plante 4</option>
+			<option value="5">Plante 5</option>
 		</select>
 	</div>
 	<div>
 		<a href="/new" class="btn variant-ghost-primary">Ajoutez une nouvelle plante </a>
 	</div>
-	<div class="w-96 h-96 mt-10">
-
-		<Chart />
-	</div>
+	
 </div>
 
 <!-- <div class="container h-full mx-auto justify-center items-center flex flex-col">
