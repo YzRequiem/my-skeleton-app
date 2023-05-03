@@ -1,4 +1,4 @@
-<script>
+<!-- <script>
 	import Button from '$lib/components/Button.svelte';
 	import { superForm } from "sveltekit-superforms/client"
 	import SuperDebug from "sveltekit-superforms/client/SuperDebug.svelte"
@@ -43,8 +43,8 @@
 			{/if}
 		</div>
 		<div class="py-10">
-			<!-- <Button  buttonContent={{ text: 'Ajouter une plante', href: '/' }} /> -->
+			
 			<button type="submit" > Ajouter une plante </button>
 		</div>
 	</form>
-</section>
+</section> -->
