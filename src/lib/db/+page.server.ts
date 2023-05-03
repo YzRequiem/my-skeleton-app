@@ -1,7 +1,3 @@
-import { sql } from "@vercel/postgres";
+import { PrismaClient } from '@prisma/client'
 
-export async function load({ locals }) {
-  return {
-    cart: await sql`SELECT * from CARTS where user_id='${locals.user}'`
-  }
-}
+const prisma = new PrismaClient()
