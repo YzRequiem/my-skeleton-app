@@ -37,19 +37,19 @@ export const actions = {
 	default: async (request) => {
 		const form = await superValidate(request, newContactSchema);
 		console.log('POST', form);
-        const newPlante = await prisma.plante.create({
-                    data: {
-                        name: form.data.name,
-                        seuil: form.data.seuil,
-                        matricule: form.data.matricule,
-                    },
-                  })
-        console.log(newPlante)
-
+        
 		if (!form.valid) {
-			return fail(400, { form });
+            return fail(400, { form });
 		} else {
-			return {
+            const newPlante = await prisma.plante.create({
+                data: {
+                    name: form.data.name,
+                    seuil: form.data.seuil,
+                    matricule: form.data.matricule,
+                },
+            })
+            console.log(newPlante)
+            return {
                 form,
                 newPlante 
             };

@@ -95,5 +95,16 @@
 		"text",
 		"track",
 		"width"
+	],
+	"sqltools.connections": [
+		{
+			"previewLimit": 50,
+			"server": "ep-steep-sea-120001-pooler.eu-central-1.postgres.vercel-storage.com",
+			"driver": "PostgreSQL",
+			"username": "default",
+			"database": "verceldb",
+			"name": "plante gress",
+			"connectString": "postgres://default:sRGpe0d3rEWf@ep-steep-sea-120001-pooler.eu-central-1.postgres.vercel-storage.com/verceldb"
+		}
 	]
 }
