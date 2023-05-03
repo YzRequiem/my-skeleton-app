@@ -17,7 +17,7 @@ const newContactSchema = z.object({
 		.lte(100),
 	matricule: z
 		.string()
-		.min(1, { message: 'Veuillez renseigner un numéro de téléphone' })
+		.min(1, { message: 'Min 1 caractère' })
 		.max(100, { message: 'Renseignez un numéro de téléphone valide' })
 		.trim()
         .transform((texte) => texte.replace(/<\/?[^>]+(>|$)/g, '')) // Supprimer les balises HTML
