@@ -20,3 +20,20 @@ model User {
   image     String
   createdAt DateTime @default(now())
 }
+
+model Plante {
+  id        Int      @id @default(autoincrement())
+  name      String
+  matricule String
+  seuil     Int
+  createdAt DateTime @default(now())
+  Mesure    Mesure[]
+}
+
+model Mesure {
+  id        Int      @id @default(autoincrement())
+  value     Int
+  createdAt DateTime @default(now())
+  plante    Plante   @relation(fields: [planteId], references: [id])
+  planteId  Int
+}
