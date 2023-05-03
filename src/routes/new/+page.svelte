@@ -1,4 +1,4 @@
-<!-- <script>
+<script>
 	import Button from '$lib/components/Button.svelte';
 	import { superForm } from "sveltekit-superforms/client"
 	import SuperDebug from "sveltekit-superforms/client/SuperDebug.svelte"
@@ -47,4 +47,4 @@
 			<button type="submit" > Ajouter une plante </button>
 		</div>
 	</form>
-</section> -->
+</section>
