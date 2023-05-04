@@ -10,5 +10,5 @@
 </script>
 
 <div>
-    <a href={buttonContent.href} on:click={drawerClose} class="btn variant-ghost-primary">{buttonContent.text} </a>
+    <a class="btn variant-ghost-primary" href={buttonContent.href} on:click={drawerClose}>{buttonContent.text} </a>
 </div>

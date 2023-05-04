@@ -5,7 +5,8 @@
 	export let data;
 
 	import { Drawer, drawerStore } from '@skeletonlabs/skeleton';
-	const drawerSettings = {
+
+const drawerSettings = {
 	id: 'example-3',
 	// Provide your property overrides:
 	bgDrawer: 'bg-purple-900 text-white',
@@ -32,7 +33,7 @@ const { form, errors, enhance, constraints } = superForm(data.form, {
 		<h2 class="text-2xl font-bold">Félicitation</h2>
 		<p class="text-2xl text-gray-200">Nouvelle plante enregistrée avec succès</p>
 		<div class="flex justify-end">
-			<Button buttonContent={{ text: "Retour au dashboard", href: "/", method:'drawerStore.close()' }}  />
+			<Button buttonContent={{ text: "Retour au dashboard", href: "/" }}  />
 		</div>
 	</div>
 </Drawer>

@@ -1,4 +1,9 @@
-export const data = {
+
+
+
+
+
+ export const data = {
     labels: ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'],
     datasets: [
       {
@@ -20,7 +25,7 @@ export const data = {
         pointHoverBorderWidth: 2,
         pointRadius: 1,
         pointHitRadius: 10,
-        data: [65, 59, 80, 81, 56, 55, 40],
+        data: [],
       },
       {
         label: 'Seuil critique',
@@ -66,4 +71,3 @@ export const data = {
       },
     ],
   };
-  
