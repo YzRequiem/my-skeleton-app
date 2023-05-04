@@ -1,14 +1,42 @@
-<script>
+<script >
 	import Button from '$lib/components/Button.svelte';
 	import { superForm } from "sveltekit-superforms/client"
 	import SuperDebug from "sveltekit-superforms/client/SuperDebug.svelte"
 	export let data;
 
-	const { form, errors, enhance, constraints } = superForm(data.form)
+	import { Drawer, drawerStore } from '@skeletonlabs/skeleton';
+	const drawerSettings = {
+	id: 'example-3',
+	// Provide your property overrides:
+	bgDrawer: 'bg-purple-900 text-white',
+	bgBackdrop: 'bg-gradient-to-tr from-indigo-500/50 via-purple-500/50 to-pink-500/50',
+	width: 'w-[280px] md:w-[480px]',
+	padding: 'p-4',
+	rounded: 'rounded-xl',
+};
+
+const { form, errors, enhance, constraints } = superForm(data.form, {
+   
+   onResult: ({ result }) => { 
+      if(result.type === 'success'){
+		drawerStore.open(drawerSettings)
+      };
+   }
+})
 
 </script>
 
 <SuperDebug data={$form} />
+<Drawer >
+	<div class=" w-full h-full p-16 text-center flex flex-col justify-center items-center gap-10">
+		<h2 class="text-2xl font-bold">Félicitation</h2>
+		<p class="text-2xl text-gray-200">Nouvelle plante enregistrée avec succès</p>
+		<div class="flex justify-end">
+			<Button buttonContent={{ text: "Retour au dashboard", href: "/", method:'drawerStore.close()' }}  />
+		</div>
+	</div>
+</Drawer>
+
 <section class="md:px-36 p-12">
 	<div class="py-10">
 		<h2>Ajoutez une nouvelle plante</h2>
@@ -44,7 +72,7 @@
 		</div>
 		<div class="py-10">
 			
-			<button type="submit" > Ajouter une plante </button>
+			<button type="submit" class="btn variant-ghost-primary" > Ajouter une plante </button>
 		</div>
 	</form>
 </section>

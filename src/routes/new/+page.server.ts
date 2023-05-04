@@ -17,7 +17,7 @@ const newContactSchema = z.object({
 	matricule: z
 		.string()
 		.min(1, { message: 'Min 1 caractère' })
-		.max(100, { message: 'Renseignez un numéro de téléphone valide' })
+		.max(100, { message: 'Max 100 caractères' })
 		.trim()
         .transform((texte) => texte.replace(/<\/?[^>]+(>|$)/g, '')) // Supprimer les balises HTML
 		.transform((texte) => texte.replace(/[(){}[\]<>%&|^!]/g, '')) // Supprimer les caractères potentiellement dangereux pour JavaScript
@@ -48,11 +48,9 @@ export const actions = {
                     matricule: form.data.matricule,
                 },
             })
-            console.log(newPlante)
-            return {
-                form,
-                newPlante 
-            };
+            console.log(newPlante);
+            form;
+            
 			
 		}
 	}
