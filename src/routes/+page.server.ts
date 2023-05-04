@@ -7,8 +7,5 @@ export const load = async () => {
     const plantes = await prisma.plante.findMany();
 
     console.log(plantes);
-    
-    return plantes;
-   
  
 }
