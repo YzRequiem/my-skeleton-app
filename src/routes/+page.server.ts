@@ -7,15 +7,27 @@ export const load = async () => {
      
     const plantes = await prisma.plante.findMany();
     const mesures = await prisma.mesure.findMany(
-        {where: { planteId: 1 },}
+      //  {where: { planteId: 1 },}
     );
-    const valeurs = mesures.map((mesure: any) => mesure.value);
 
-console.log( valeurs);
 
-    //console.log(mesures);
+    const mesuresParPlante = {};
+
+    mesures.forEach((mesure) => {
+        if (!mesuresParPlante[mesure.planteId]) {
+            mesuresParPlante[mesure.planteId] = [];
+        }
+        mesuresParPlante[mesure.planteId].push(mesure.value);
+    });
+
+    console.log( mesuresParPlante);
+
+    // const valeurs = mesures.map((mesure: any) => mesure.value);
+    // console.log( valeurs);
+
+    // console.log(mesures);
     // console.log(plantes);
     
-    return {plantes, mesures, valeurs};
+    return {plantes, mesures, mesuresParPlante};
 
 }
