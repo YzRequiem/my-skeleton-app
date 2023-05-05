@@ -1,33 +1,38 @@
 import prisma from '$lib/prisma';
-import type { PageServerLoad } from './$types';
-
-
 
 export const load = async () => {
-     
     const plantes = await prisma.plante.findMany();
-    const mesures = await prisma.mesure.findMany(
-      //  {where: { planteId: 1 },}
-    );
+    const mesures = await prisma.mesure.findMany();
+    // const groupMesure = await prisma.mesure.groupBy({
+    //     by: ['planteId', 'value',],
+    //     where: {
+    //         take: 1,
+    //     },
 
+    //     orderBy: {
+    //         planteId: 'desc',
+    //     },
+    // })
+    // console.log(groupMesure);
 
     const mesuresParPlante = {};
+    const nomDesPlantes = [];
+    
 
+    plantes.forEach((plante) => {
+       nomDesPlantes.push(plante.name);
+    });
+ 
+    
     mesures.forEach((mesure) => {
         if (!mesuresParPlante[mesure.planteId]) {
             mesuresParPlante[mesure.planteId] = [];
         }
-        mesuresParPlante[mesure.planteId].push(mesure.value);
+        mesuresParPlante[mesure.planteId].push(mesure.value); 
     });
 
-    console.log( mesuresParPlante);
-
     // const valeurs = mesures.map((mesure: any) => mesure.value);
-    // console.log( valeurs);
 
-    // console.log(mesures);
-    // console.log(plantes);
-    
-    return {plantes, mesures, mesuresParPlante};
+    return {plantes, mesures, mesuresParPlante , nomDesPlantes};
 
 }

@@ -1,21 +1,16 @@
 <script>
 	import BarChart from "$lib/components/BarChart.svelte";
 	import Button from "$lib/components/Button.svelte";
-	import LineChart from "$lib/components/chartline/LineChart.svelte";
+	import LineChart from "$lib/components/LineChart.svelte";
 
-	import {dataChart } from "$lib/stores";
+	import {dataChart, dataBarChart } from "$lib/stores";
 	export let data;
 
-	
+	// Data for the chart bar
+	$dataBarChart.labels = data.nomDesPlantes
+
+	// Data for the chart line 
 	$dataChart.datasets[0].data = data.mesuresParPlante[1] 
-	
-	// on attend un tableau de valeur 
-	// data.mesuresParPlante = {
-		// 	'1': [ 66, 55, 44, 33, 22 ],
-		// 	'2': [ 33, 46, 55, 78, 20 ],
-		// 	'3': [ 33, 20, 46, 55, 78 ] 
-		// };
-		
 	let selectedPlante =data.plantes[0].name
 	let mesureDeLaPlanteSelectionee 
 	function handleChange(event) {
@@ -23,7 +18,6 @@
   		mesureDeLaPlanteSelectionee = data.mesuresParPlante[planteId];
 		$dataChart.datasets[0].data = mesureDeLaPlanteSelectionee;
 		selectedPlante = data.plantes[planteId].name
-		console.log(selectedPlante);
 	}
 </script>
 
@@ -54,6 +48,4 @@
 	
 </div>
 
-<!-- <div class="container h-full mx-auto justify-center items-center flex flex-col">
- <Chart />
-</div> -->
+

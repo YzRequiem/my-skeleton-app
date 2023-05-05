@@ -1,6 +1,6 @@
 <script>
     import { Bar } from 'svelte-chartjs';
-    import { data } from './dataaa.js';
+    import { dataBarChart } from '$lib/stores';
   
     import {
       Chart,
@@ -11,6 +11,8 @@
       CategoryScale,
       LinearScale,
     } from 'chart.js';
+
+    
   
     Chart.register(
       Title,
@@ -22,5 +24,5 @@
     );
   </script>
   
-  <Bar {data} options={{ responsive: true }} />
+  <Bar data={$dataBarChart} options={{ responsive: true }} />
   
