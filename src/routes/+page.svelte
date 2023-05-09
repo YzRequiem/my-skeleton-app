@@ -8,16 +8,20 @@
 
 	// Data for the chart bar
 	$dataBarChart.labels = data.nomDesPlantes
+	$dataBarChart.datasets[0].data = data.lastValues
+	
 
 	// Data for the chart line 
 	$dataChart.datasets[0].data = data.mesuresParPlante[1] 
-	let selectedPlante =data.plantes[0].name
+	let selectedPlante = data.plantes[0].name
 	let mesureDeLaPlanteSelectionee 
 	function handleChange(event) {
   		const planteId = event.target.value;
+		console.log(planteId);
   		mesureDeLaPlanteSelectionee = data.mesuresParPlante[planteId];
 		$dataChart.datasets[0].data = mesureDeLaPlanteSelectionee;
-		selectedPlante = data.plantes[planteId].name
+		selectedPlante = data.plantesAssoc[planteId]
+		$dataChart.datasets[1].data = [data.plantes[planteId].seuil,data.plantes[planteId].seuil,data.plantes[planteId].seuil,data.plantes[planteId].seuil,data.plantes[planteId].seuil,data.plantes[planteId].seuil,data.plantes[planteId].seuil ]
 	}
 </script>
 

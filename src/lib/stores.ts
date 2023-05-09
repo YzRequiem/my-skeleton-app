@@ -82,7 +82,7 @@ export const dataBarChart = writable(
         datasets: [
           {
             label: "% d'humidité pour la dernière heure "   ,
-            data: [12, 19, 3, 5, 2, 3],
+            data: [],
             backgroundColor: [
               'rgba(255, 134,159,0.4)',
               'rgba(98,  182, 239,0.4)',
