@@ -44,7 +44,7 @@
 
 	<div class="w-full md:w-4/6 ">
 		{#if selectedPlante}
-			 <h2 class="m-5 py-12 text-xl text-center">Hydromértrie {selectedPlante}</h2>
+			 <h2 class="m-5 py-12 text-xl text-center">Hydromértrie de: {selectedPlante}</h2>
 		{/if}
 	
 		<LineChart />
