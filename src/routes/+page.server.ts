@@ -49,7 +49,6 @@ export const load = async () => {
     // je récupere mes value depuis dernieresValues
 
     const lastValues = dernieresValues.map((mesure) => mesure.value);
-    console.log(lastValues);
     
    
     
@@ -72,7 +71,6 @@ export const load = async () => {
         mesuresParPlante[mesure.planteId].push(mesure.value); 
     });
     
-    console.log(mesuresParPlante);
     
 
     // je créé un tableau associatif pour récupérer mes noms de plantes

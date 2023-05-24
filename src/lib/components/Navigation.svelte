@@ -1,6 +1,9 @@
 <script lang="ts">
-    import { drawerStore } from '@skeletonlabs/skeleton';
-    
+    import { AppRail, AppRailTile, drawerStore } from '@skeletonlabs/skeleton';
+    import { page } from '$app/stores';
+        import { derived } from 'svelte/store';
+
+const selected = derived(page, $page => $page.url.pathname);
    function drawerClose(): void {
         drawerStore.close();
     };
@@ -20,8 +23,6 @@
     <li class="text-xl "><a href="/" on:click={drawerClose}>Accueil</a></li>
     <li class="text-xl "><a href="/new" on:click={drawerClose}>New</a></li>
     <li class="text-xl "><a href="/alerts" on:click={drawerClose}>Alerts</a></li>
-            
-               
-    
 </ul>
+
 </nav>
