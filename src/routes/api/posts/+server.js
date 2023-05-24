@@ -13,8 +13,8 @@ export const POST = async ({request}) => {
      console.log(body);
 
     return new Response(
-    JSON.stringify({message: 'Post created'}),
-    { status: 201 }
+    JSON.stringify({message: 'Ta requette à bien été reçue michel '}),
+    { status: 200 }
     )
 
 
