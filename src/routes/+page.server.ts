@@ -49,10 +49,6 @@ export const load = async () => {
     // je récupere mes value depuis dernieresValues
 
     const lastValues = dernieresValues.map((mesure) => mesure.value);
-    
-   
-    
-   
 
     const mesuresParPlante = {};
     const nomDesPlantes = [];

@@ -2,6 +2,10 @@ import { localStorageStore } from "@skeletonlabs/skeleton";
 import { writable, type Writable } from "svelte/store";
 
 
+export let currentTile: number = 0;
+
+
+
 
 export const valuess = writable([0,2])
 
