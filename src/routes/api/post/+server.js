@@ -6,11 +6,13 @@ export const POST = async ({request}) => {
     const body = await request.json();
      
     if (body) {
+        
         const newValue = await prisma.mesure.create(
             {
                 data: body
             }
       );
+      
       newValue
     }
 
@@ -18,7 +20,6 @@ export const POST = async ({request}) => {
 
         JSON.stringify({message: 'Success, request received! '}),
         { status: 200 }
-    
 
     )
 
