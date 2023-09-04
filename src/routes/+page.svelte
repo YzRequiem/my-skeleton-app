@@ -34,12 +34,20 @@
 		<h2 class="m-5 text-xl text-center">Selectionnez votre plante</h2>
 		<select class="select" size="4" value="1" on:change={handleChange} >
 			{#each data.plantes as plante}
-				<option value={plante.id}>{plante.name}</option>
+				<option value={plante.id}>
+					{plante.name}
+					<button class="btn" on:click={() => deletePlant(plante.id)}>Supprimer</button>
+				</option>
 			{/each}
 		</select>
 	</div>
-	<div>
-		<Button buttonContent={{ text: "Ajouter une plante", href: "/new" }} />
+	<div class="flex gap-5">
+		<div>
+			<Button buttonContent={{ text: "Ajouter une plante", href: "/new" }} />
+		</div>
+		<div>
+			<Button buttonContent={{ text: "Supprimer une plante", href: "/supprimer" }} />
+		</div>
 	</div>
 
 	<div class="w-full md:w-4/6 ">

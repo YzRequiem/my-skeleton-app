@@ -70,12 +70,14 @@ export const load = async () => {
     
 
     // je créé un tableau associatif pour récupérer mes noms de plantes
-    const plantesAssoc = plantes.reduce((acc, plante) => {
-        acc[plante.id] = plante.name;
-        return acc;
+    const plantesAssoc = plantes.reduce((acc, plante) => { // acc = accumulateur  plante = valeur courante reduit le tableau à un seul élément
+        acc[plante.id] = plante.name; // acc[plante.id] = clé  plante.name = valeur permet de récupérer les noms de plantes
+        return acc; 
       }, {});
     
 
     return {plantes, mesures, mesuresParPlante , nomDesPlantes, plantesAssoc, lastValues};
 
 }
+
+ 
