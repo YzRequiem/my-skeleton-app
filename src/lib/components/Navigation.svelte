@@ -23,7 +23,6 @@ const selected = derived(page, $page => $page.url.pathname);
     <li class="text-xl "><a href="/" on:click={drawerClose}>Accueil</a></li>
     <li class="text-xl "><a href="/new" on:click={drawerClose}>Ajouter </a></li>
     <li class="text-xl "><a href="/alerts" on:click={drawerClose}>Alertes</a></li>
-    <li class="text-xl "><a href="/supprimer" on:click={drawerClose}>Supprimer</a></li>
 </ul>
 
 </nav>

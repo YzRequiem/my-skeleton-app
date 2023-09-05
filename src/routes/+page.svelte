@@ -4,6 +4,9 @@
 	import LineChart from "$lib/components/LineChart.svelte";
 
 	import {dataChart, dataBarChart } from "$lib/stores";
+
+
+
 	export let data;
 
 	// Data for the chart bar
@@ -14,14 +17,16 @@
 	// Data for the chart line 
 	$dataChart.datasets[0].data = data.mesuresParPlante[1] 
 	let selectedPlante = data.plantes[0].name
+	let selectedPlanteId = data.plantes[0].id
 	let mesureDeLaPlanteSelectionee 
 	function handleChange(event) {
   		const planteId = event.target.value;
-		console.log(planteId);
   		mesureDeLaPlanteSelectionee = data.mesuresParPlante[planteId];
 		$dataChart.datasets[0].data = mesureDeLaPlanteSelectionee;
 		selectedPlante = data.plantesAssoc[planteId]
 		$dataChart.datasets[1].data = [data.plantes[planteId].seuil,data.plantes[planteId].seuil,data.plantes[planteId].seuil,data.plantes[planteId].seuil,data.plantes[planteId].seuil,data.plantes[planteId].seuil,data.plantes[planteId].seuil ]
+		selectedPlanteId = planteId
+
 	}
 </script>
 
@@ -36,7 +41,6 @@
 			{#each data.plantes as plante}
 				<option value={plante.id}>
 					{plante.name}
-					<button class="btn" on:click={() => deletePlant(plante.id)}>Supprimer</button>
 				</option>
 			{/each}
 		</select>
@@ -53,6 +57,11 @@
 	<div class="w-full md:w-4/6 ">
 		{#if selectedPlante}
 			 <h2 class="m-5 py-12 text-xl text-center">Hydromértrie de: {selectedPlante}</h2>
+			 <!-- delete selected plant form -->
+			 <form action="?/supprimer&id={selectedPlanteId}" method="POST" class="flex justify-center m-10">
+				<input type="hidden" name="id" value={selectedPlante} />
+				<button class="btn variant-ghost-primary" type="submit">Supprimer la plante sélectionnée</button>
+			</form>
 		{/if}
 	
 		<LineChart />
