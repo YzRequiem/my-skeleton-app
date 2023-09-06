@@ -12,8 +12,6 @@
       LinearScale,
     } from 'chart.js';
 
-    
-  
     Chart.register(
       Title,
       Tooltip,

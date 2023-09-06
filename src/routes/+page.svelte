@@ -4,29 +4,40 @@
 	import LineChart from "$lib/components/LineChart.svelte";
 
 	import {dataChart, dataBarChart } from "$lib/stores";
+	import { date } from "zod";
 
 
 
 	export let data;
 
 	// Data for the chart bar
+		// bind plantes's name to the bar chart store
 	$dataBarChart.labels = data.nomDesPlantes
+		// bind plantes's last values to the bar chart store
 	$dataBarChart.datasets[0].data = data.lastValues
 	
-
 	// Data for the chart line 
-	$dataChart.datasets[0].data = data.mesuresParPlante[1] 
+		// Select the first plant id by default 
+	let planteId = data.plantes[0].id
+		// bind plantes's hydroValues to the lne chart store
+	$dataChart.datasets[0].data = data.mesuresParPlante[planteId] 
+		// bind plantes's threshold to the line chart store
+	$dataChart.datasets[1].data =  [data.plantes[planteId].seuil,data.plantes[planteId].seuil,data.plantes[planteId].seuil,data.plantes[planteId].seuil,data.plantes[planteId].seuil,data.plantes[planteId].seuil,data.plantes[planteId].seuil ]
+	
 	let selectedPlante = data.plantes[0].name
 	let selectedPlanteId = data.plantes[0].id
 	let mesureDeLaPlanteSelectionee 
-	function handleChange(event) {
-  		const planteId = event.target.value;
+	function handleChange(event){
+  		planteId = event.target.value;
   		mesureDeLaPlanteSelectionee = data.mesuresParPlante[planteId];
+		// id de la plante selectionnée
+		console.log(data.plantes);
+		console.log(mesureDeLaPlanteSelectionee);
 		$dataChart.datasets[0].data = mesureDeLaPlanteSelectionee;
 		selectedPlante = data.plantesAssoc[planteId]
 		$dataChart.datasets[1].data = [data.plantes[planteId].seuil,data.plantes[planteId].seuil,data.plantes[planteId].seuil,data.plantes[planteId].seuil,data.plantes[planteId].seuil,data.plantes[planteId].seuil,data.plantes[planteId].seuil ]
+		console.log(planteId,data.plantes[planteId]);
 		selectedPlanteId = planteId
-
 	}
 </script>
 

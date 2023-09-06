@@ -49,9 +49,10 @@ export const load = async () => {
 
     // je récupère toutes mes mesures pour le graph
     const mesures = await prisma.mesure.findMany();
-    console.log(mesures);
 
-    // je récupère les dernières (id en fonction de la plante id )mesures pour chaque plante
+    // je récupère les dernières mesures pour chaque plante en fonction de l'id de la plante 
+    // en prenant l'id le plus élevé pour attraper la dernière mesure
+    // puis je trie par ordre croissant d'id de plante
     const dernieresMesures = await prisma.mesure.groupBy({
         by: ['planteId'],
         _max: {
@@ -60,11 +61,16 @@ export const load = async () => {
         orderBy: {
             planteId: 'asc',
         }
-
     });
 
+    /**
+     * dernieresMesures = [
+     *  { _max: { id: 2 }, planteId: 1 },
+     *  { _max: { id: 5 }, planteId: 2 },
+     */    
+
     // je stocke les id de mes dernières mesures dans un tableau
-    const ids = dernieresMesures.map((mesure) => mesure._max.id);
+    const ids = dernieresMesures.map((mesure) => mesure._max.id);    
 
     // je récupère les id et valeurs de mes dernières mesures
     const dernieresValues = await prisma.mesure.findMany({
@@ -78,37 +84,63 @@ export const load = async () => {
             value: true,
         },
     });
-    
-    
+    /**
+     * [
+     *      { id: 2, value: 50 },
+     *      { id: 5, value: 20 },
+     *      { id: 9, value: 60 },
+     *      { id: 17, value: 30 }
+     * ]
+    */
     
     // je récupere mes value depuis dernieresValues
-
     const lastValues = dernieresValues.map((mesure) => mesure.value);
+    /**
+     * [ 50, 20, 60, 30 ]
+    */    
 
-    const mesuresParPlante = {};
-    const nomDesPlantes = [];
+   const nomDesPlantes = [];
+   const mesuresParPlante = {};
     
     
     // je récupère les noms de mes plantes que stocke dans un tableau
     plantes.forEach((plante) => {
        nomDesPlantes.push(plante.name);
     });
- 
     
+    // je récupère les valeurs de mes mesures que je stocke dans un tableau associatif
     mesures.forEach((mesure) => {
-        if (!mesuresParPlante[mesure.planteId]) {
+        
+        if (!mesuresParPlante[mesure.planteId]){
             mesuresParPlante[mesure.planteId] = [];
         }
         mesuresParPlante[mesure.planteId].push(mesure.value); 
     });
     
+    /**
+     * {
+     *    1: [ 50, 20, 60, 30 ],
+     *    2: [ 50, 20, 60, 30 ],
+     *    4: [ 50, 20, 60, 30 ],
+     *    5: [ 50, 20, 60, 30 ],
+     * }
+     */    
     
-
     // je créé un tableau associatif pour récupérer mes noms de plantes
     const plantesAssoc = plantes.reduce((acc, plante) => { // acc = accumulateur  plante = valeur courante reduit le tableau à un seul élément
         acc[plante.id] = plante.name; // acc[plante.id] = clé  plante.name = valeur permet de récupérer les noms de plantes
         return acc; 
       }, {});
+
+    console.log(plantesAssoc);
+    /**
+     * {
+     *   1: 'Tomate',
+     *   2: 'Basilic',
+     *   4: 'Persil',
+     *   5: 'Menthe',
+     */
+    
     
 
     return {plantes, mesures, mesuresParPlante , nomDesPlantes, plantesAssoc, lastValues};

@@ -2,15 +2,39 @@ import { localStorageStore } from "@skeletonlabs/skeleton";
 import { writable, type Writable } from "svelte/store";
 
 
-export let currentTile: number = 0;
 
 
 
 
 export const valuess = writable([0,2])
 
+type DataChart = {
+  labels: string[];
+  datasets: {
+    label: string;
+    fill: boolean;
+    lineTension: number;
+    backgroundColor: string;
+    borderColor: string;
+    borderCapStyle: string;
+    borderDash: number[];
+    borderDashOffset: number;
+    borderJoinStyle: string;
+    pointBorderColor: string;
+    pointBackgroundColor: string;
+    pointBorderWidth: number;
+    pointHoverRadius: number;
+    pointHoverBackgroundColor: string;
+    pointHoverBorderColor: string;
+    pointHoverBorderWidth: number;
+    pointRadius: number;
+    pointHitRadius: number;
+    data: number[];
+  }[];
+};
 
-export const dataChart = writable({
+
+export const dataChart = writable<DataChart>({
     labels: ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'],
     datasets: [
       {
@@ -53,39 +77,30 @@ export const dataChart = writable({
         pointHoverBorderWidth: 2,
         pointRadius: 1,
         pointHitRadius: 10,
-        data: [30,30, 30, 30, 30, 30, 30],
+        data: [],
       },
-      {
-        label: 'My Second dataset',
-        fill: true,
-        lineTension: 0.3,
-        backgroundColor: 'rgba(184, 185, 210, .3)',
-        borderColor: 'red',
-        borderCapStyle: 'butt',
-        borderDash: [],
-        borderDashOffset: 0.0,
-        borderJoinStyle: 'miter',
-        pointBorderColor: 'rgb(35, 26, 136)',
-        pointBackgroundColor: 'rgb(255, 255, 255)',
-        pointBorderWidth: 10,
-        pointHoverRadius: 5,
-        pointHoverBackgroundColor: 'rgb(0, 0, 0)',
-        pointHoverBorderColor: 'rgba(220, 220, 220, 1)',
-        pointHoverBorderWidth: 2,
-        pointRadius: 1,
-        pointHitRadius: 10,
-        data: [0],
-      },
-    ],
+
+      ],
   }
   )
 
-export const dataBarChart = writable(
-    {
+  type DataBarChart = {
+    labels: string[];
+    datasets: {
+      label: string;
+      data: number[]; // Définissez le type de données ici
+      backgroundColor: string[];
+      borderWidth: number;
+      borderColor: string[];
+    }[];
+  };
+  
+  export const dataBarChart = writable<DataBarChart>(
+  {
         labels: [ 'Plante 1 ', 'Plante 2', 'Plante 3', 'Plante 4', 'Plante 5' ],
         datasets: [
           {
-            label: "% d'humidité pour la dernière heure "   ,
+            label: "% d'humidité lors de la dernière prise de mesure "   ,
             data: [],
             backgroundColor: [
               'rgba(255, 134,159,0.4)',
@@ -107,4 +122,4 @@ export const dataBarChart = writable(
           },
         ],
       }
-)
+  )
