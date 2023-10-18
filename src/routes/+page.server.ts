@@ -116,7 +116,7 @@ export const load = async () => {
         }
         mesuresParPlante[mesure.planteId].push(mesure.value); 
     });
-    
+    //test
     /**
      * {
      *    1: [ 50, 20, 60, 30 ],
